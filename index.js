@@ -2,6 +2,20 @@ var gender=document.getElementById("gender");
 var age=document.getElementById("age");
 var nationality=document.getElementById("nationality");
 
+// function createCountryCard(flag, prob){
+// }
+
+
+window.onload=getDogImage();
+async function getDogImage(){
+    var dog_image=document.createElement("img");
+    await fetch(`https://dog.ceo/api/breeds/image/random`)
+    .then(response => response.json())
+    .then(data => {
+        dog_image.src=data.message;
+        document.getElementsByClassName("image")[0].append(dog_image);
+    })
+}
 async function prediction(event){
     event.preventDefault();
     var name=document.getElementById("name").value; 
