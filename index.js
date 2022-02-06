@@ -40,9 +40,11 @@ function prediction(event) {
 
 //--------------- Get Gender Function --------------
 function getGender(name) {
+    //Fetch From API
     fetch(`https://api.genderize.io?name=${name}`)
         .then(response => response.json())
         .then(data => {
+            //Show Different Icon in Case Female or Male
             if (data.gender == "female") {
                 gender.innerHTML = '<i class="fas fa-female female"></i>';
             } else {
@@ -56,13 +58,15 @@ function getGender(name) {
 
 //---------------- Get Age Function ----------------
 function getAge(name) {
+    //Fetch From API
     fetch(`https://api.agify.io/?name=${name}`)
-    .then(response => response.json())
-    .then(data => {
-        age.innerText = data.age;
-    }).catch(() => {
-        alert("Could not connect to API");
-    });
+        .then(response => response.json())
+        .then(data => {
+            //Retrieve Age and Assign it
+            age.innerText = data.age;
+        }).catch(() => {
+            alert("Could not connect to API");
+        });
 }
 //--------------------------------------------------
 
@@ -72,8 +76,10 @@ function getNationalities(name) {
     fetch(`https://api.nationalize.io/?name=${name}`)
         .then(response => response.json())
         .then(async data => {
+            //Fetch From API Country Array and Loop
             var countries = data.country;
             for (var i = 0; i < countries.length; i++) {
+                //Create Country Card HTML by Retrieving Flag URL and Probability
                 var flag_url = await getFlag(countries[i].country_id);
                 createCountryCard(flag_url, countries[i].probability);
             }
@@ -89,10 +95,12 @@ async function getFlag(country_id) {
 
 //Create Country Card for HTML
 function createCountryCard(flagURL, prob) {
+    //Adjust Probability as Percentage
     var probability = Math.floor(prob * 100);
-    var elements = `<img class="flag" src=${flagURL} alt="TEST"><span class="prob">${probability}%</span>`
+    //Create Card Div Containing Image and Percentage
     const card = document.createElement("div")
     card.classList.add("country");
+    var elements = `<img class="flag" src=${flagURL} alt="TEST"><span class="prob">${probability}%</span>`
     card.innerHTML = elements;
     nationality.append(card);
 }
