@@ -11,21 +11,25 @@
 
 <body>
     <div class="container">
+
         <div class="heading">
-            <h1>Predict Website <br/> <span class="instructions">Enter your name to start</span></h1>
+            <h1>Predict Website</h1>
+            <div class="image"></div>
+            <span class="instructions">Enter your name to start</span>
             <form onsubmit="prediction(event)">
                 <input type="text" name="name" id="name">
             </form>
-            <br/>
+            <br />
         </div>
+
         <div class="description">
-            <h3 id="gender"></h3>
-            <h3 id="age"></h3>
+            <p id="gender"></p>
             <div id="nationality"></div>
+            <p id="age"></p>
         </div>
-        <div class="image">
-        </div>
+
     </div>
+
     <script src="https://kit.fontawesome.com/25f9da6183.js" crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
