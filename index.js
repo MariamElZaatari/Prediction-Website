@@ -16,4 +16,13 @@ async function prediction(event){
     }).catch((error)=>{
         alert("Could not connect to API");
     });
+
+    await fetch(`https://api.agify.io/?name=${name}`)
+    .then(response => response.json())
+    .then(data => {
+        age.innerText=data.age;
+    }).catch((error)=>{
+        alert("Could not connect to API");
+    });
+    
 }
