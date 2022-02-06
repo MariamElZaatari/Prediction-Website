@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-image: url(https://coolbackgrounds.io/images/backgrounds/index/compute-ea4c57a4.png);
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -48,7 +49,7 @@ h1 {
 }
 
 .instructions {
-    font-weight: bold;
+    font-weight: 600;
     color: white;
     font-size: 25px;
 }
@@ -74,7 +75,7 @@ input {
     width: 100%;
     font-size: 100px;
     color: #c1d4e5;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /* Gender Section */
