@@ -19,9 +19,11 @@ function getDogImage() {
 }
 //--------------------------------------------------
 
-//---------------- Predit Function -----------------
+//---------------- Predict Function -----------------
 function prediction(event) {
-    //Reset Nationality Div
+    //Reset Description HTML Section
+    gender.innerText="";
+    age.innerText=""
     nationality.innerHTML = "";
 
     //Prevent Refresh on Enter
@@ -46,9 +48,9 @@ function getGender(name) {
         .then(data => {
             //Show Different Icon in Case Female or Male
             if (data.gender == "female") {
-                gender.innerHTML = '<i class="fas fa-female female"></i>';
+                gender.innerHTML = `<i class="fas fa-female female"></i><p class="label">${name}</p>`;
             } else {
-                gender.innerHTML = '<i class="fas fa-male male"></i>';
+                gender.innerHTML = `<i class="fas fa-male male"></i><p class="label">${name}</p>`;
             }
         }).catch(() => {
             alert("Could not connect to API");
@@ -63,7 +65,7 @@ function getAge(name) {
         .then(response => response.json())
         .then(data => {
             //Retrieve Age and Assign it
-            age.innerText = data.age;
+            age.innerHTML = `${data.age} <p class="label">yrs old</p>`;
         }).catch(() => {
             alert("Could not connect to API");
         });
@@ -100,7 +102,7 @@ function createCountryCard(flagURL, prob) {
     //Create Card Div Containing Image and Percentage
     const card = document.createElement("div")
     card.classList.add("country");
-    var elements = `<img class="flag" src=${flagURL} alt="TEST"><span class="prob">${probability}%</span>`
+    var elements = `<img class="flag" src=${flagURL} alt="TEST"><p class="label">${probability}%</p>`
     card.innerHTML = elements;
     nationality.append(card);
 }
