@@ -2,9 +2,13 @@ var gender=document.getElementById("gender");
 var age=document.getElementById("age");
 var nationality=document.getElementById("nationality");
 
-// function createCountryCard(flag, prob){
-// }
-
+function createCountryCard(flagURL, prob){
+    var probability=Math.floor(prob*100);
+    var elements=`<img class="flag" src=${flagURL} alt="TEST"><span>${probability}%</span>`
+    const card=document.createElement("div")
+    card.innerHTML=elements;
+    nationality.append(card);
+}
 
 window.onload=getDogImage();
 async function getDogImage(){
@@ -44,17 +48,9 @@ async function prediction(event){
     .then(async data => {
         var countries=data.country;
         for (var i=0; i<countries.length;i++){
-            probability=Math.floor(countries[i].probability*100);
-            var country_flag=document.createElement("img");
-            country_flag.classList.add("flag");
-            country_flag.setAttribute("width", "100px");
-            country_flag.setAttribute("height", "70px");
             await fetch(`https://countryflagsapi.com/png/${countries[i].country_id}`).then(response => {
-                country_flag.src=response.url;
+                createCountryCard(response.url,countries[i].probability)
             })
-            nationality.append(country_flag)
-            nationality.append(probability)
-            nationality.append(document.createElement("br"));
         }
     }).catch(()=>{
         alert("Could not connect to API");
